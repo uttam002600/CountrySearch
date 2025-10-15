@@ -5,7 +5,6 @@ const CountryCard = ({ country, onSelect }) => {
     return new Intl.NumberFormat().format(population);
   };
 
-  console.log(country);
   return (
     <div
       onClick={() => onSelect(country)}

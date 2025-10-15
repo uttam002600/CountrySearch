@@ -43,6 +43,7 @@ const CountrySearch = () => {
   }, []);
 
   const handleSearch = (term) => {
+    console.log(term);
     setSearchTerm(term);
 
     if (!term.trim()) {
@@ -51,17 +52,21 @@ const CountrySearch = () => {
       return;
     }
 
-    const filtered = countries.filter((country) =>
-      country.name.toLowerCase().includes(term.toLowerCase())
+    const filtered = countries.filter(
+      (country) =>
+        typeof country.name === "string" &&
+        country.name.toLowerCase().includes(term.toLowerCase())
     );
 
     setFilteredCountries(filtered);
 
+    // Add recent search
     if (term.trim() && !recentSearches.includes(term.trim())) {
       const newRecentSearches = [term.trim(), ...recentSearches.slice(0, 4)];
       setRecentSearches(newRecentSearches);
     }
 
+    // Switch view
     if (filtered.length === 1) {
       setSelectedCountry(filtered[0]);
       setView("profile");
@@ -74,6 +79,8 @@ const CountrySearch = () => {
     setSearchTerm(term);
     handleSearch(term);
   };
+
+  console.log(term);
 
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);

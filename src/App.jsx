@@ -53,7 +53,7 @@ function App() {
     }
 
     const filtered = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(term.toLowerCase())
+      country.name.toLowerCase().includes(term.toLowerCase())
     );
 
     setFilteredCountries(filtered);
